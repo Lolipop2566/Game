@@ -2,7 +2,11 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1"
+    />
+    <meta name="theme-color" content="#0b0d16" />
     <title>Симулятор Бомжа 3D</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -29,7 +33,26 @@
           <span class="label">Собрано еды</span>
           <strong id="score-value">0</strong>
         </div>
-        <button id="toggle-help" type="button" aria-expanded="false">?</button>
+        <div class="status-actions">
+          <button
+            id="toggle-help"
+            type="button"
+            aria-expanded="false"
+            aria-label="Открыть подсказку"
+            title="Подсказка"
+          >
+            ?
+          </button>
+          <button
+            id="toggle-hud"
+            type="button"
+            aria-pressed="false"
+            aria-label="Свернуть интерфейс"
+            title="Свернуть панель"
+          >
+            ⤢
+          </button>
+        </div>
       </section>
       <section id="help-panel" hidden>
         <h2>Как играть</h2>
