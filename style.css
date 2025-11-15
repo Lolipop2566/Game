@@ -1,0 +1,218 @@
+:root {
+  color-scheme: dark;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  font-size: clamp(14px, 2.2vw, 18px);
+  --overlay-bg: rgba(15, 15, 25, 0.68);
+  --accent: #ffbb33;
+  --accent-strong: #ff8a00;
+  --text: #f8f8ff;
+  --muted: #9aa1b3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  background: radial-gradient(circle at top, #20263a, #0b0d16 60%);
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  color: var(--text);
+}
+
+#game-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+#game-overlay {
+  position: fixed;
+  top: env(safe-area-inset-top, 1rem);
+  left: env(safe-area-inset-left, 1rem);
+  right: env(safe-area-inset-right, 1rem);
+  display: grid;
+  gap: 1rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  pointer-events: none;
+}
+
+#game-overlay header {
+  background: var(--overlay-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1rem;
+  pointer-events: auto;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.35);
+}
+
+#game-overlay h1 {
+  font-size: 1.5em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+#game-overlay p {
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+#status-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  padding: 1rem;
+  pointer-events: auto;
+}
+
+.status-item {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.status-item.score {
+  justify-items: center;
+  text-align: center;
+}
+
+.status-item .label {
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.bar {
+  position: relative;
+  width: 100%;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.bar span {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  transform-origin: left center;
+  transform: scaleX(0.8);
+  transition: transform 0.4s ease;
+}
+
+#score-value {
+  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  color: var(--accent);
+}
+
+#toggle-help {
+  justify-self: end;
+  align-self: start;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.2s ease;
+}
+
+#toggle-help[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+#help-panel {
+  pointer-events: auto;
+  background: var(--overlay-bg);
+  border-radius: 1rem;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.4);
+}
+
+#help-panel h2 {
+  font-size: 1.1em;
+  margin-bottom: 0.75rem;
+  color: var(--accent);
+}
+
+#help-panel ul {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--muted);
+}
+
+.joystick {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 1rem) + 1rem);
+  width: clamp(120px, 35vw, 160px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: rgba(20, 20, 30, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+#joystick-left {
+  left: env(safe-area-inset-left, 1rem);
+}
+
+#joystick-right {
+  right: env(safe-area-inset-right, 1rem);
+}
+
+.joystick .stick {
+  width: 40%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: linear-gradient(145deg, rgba(255, 186, 68, 0.85), rgba(255, 138, 0, 0.75));
+  box-shadow: 0 1rem 1.8rem rgba(255, 159, 10, 0.35);
+  transition: transform 0.08s ease;
+}
+
+@media (min-width: 900px) {
+  :root {
+    font-size: 18px;
+  }
+
+  body {
+    justify-content: stretch;
+  }
+
+  #game-overlay {
+    max-width: 680px;
+    left: 2rem;
+  }
+
+  #joystick-left,
+  #joystick-right {
+    width: 160px;
+  }
+}
