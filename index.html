@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1"
+    />
+    <meta name="theme-color" content="#0b0d16" />
+    <title>Симулятор Бомжа 3D</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="game-overlay">
+      <header>
+        <h1>Симулятор Бомжа 3D</h1>
+        <p>Продержись в городе и собери еду, чтобы выжить.</p>
+      </header>
+      <section id="status-panel" aria-live="polite">
+        <div class="status-item">
+          <span class="label">Здоровье</span>
+          <div class="bar" id="health-bar"><span></span></div>
+        </div>
+        <div class="status-item">
+          <span class="label">Голод</span>
+          <div class="bar" id="hunger-bar"><span></span></div>
+        </div>
+        <div class="status-item">
+          <span class="label">Настроение</span>
+          <div class="bar" id="mood-bar"><span></span></div>
+        </div>
+        <div class="status-item score">
+          <span class="label">Собрано еды</span>
+          <strong id="score-value">0</strong>
+        </div>
+        <div class="status-actions">
+          <button
+            id="toggle-help"
+            type="button"
+            aria-expanded="false"
+            aria-label="Открыть подсказку"
+            title="Подсказка"
+          >
+            ?
+          </button>
+          <button
+            id="toggle-hud"
+            type="button"
+            aria-pressed="false"
+            aria-label="Свернуть интерфейс"
+            title="Свернуть панель"
+          >
+            ⤢
+          </button>
+        </div>
+      </section>
+      <section id="help-panel" hidden>
+        <h2>Как играть</h2>
+        <ul>
+          <li>Левый стик — передвижение.</li>
+          <li>Правый стик — обзор.</li>
+          <li>Собирай светящиеся мешки с едой, чтобы пополнить запасы.</li>
+          <li>Следи за голодом и настроением: они падают со временем.</li>
+        </ul>
+      </section>
+    </div>
+    <div id="joystick-left" class="joystick" aria-label="Стик движения">
+      <div class="stick"></div>
+    </div>
+    <div id="joystick-right" class="joystick" aria-label="Стик обзора">
+      <div class="stick"></div>
+    </div>
+    <canvas id="game-canvas"></canvas>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
